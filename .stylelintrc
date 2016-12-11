@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "color-no-invalid-hex": true,
+    "declaration-colon-space-after": "always",
+    "max-empty-lines": 2,
+    "indentation": 2,
+    "selector-no-attribute": true,
+    "selector-no-combinator": true,
+    "selector-no-id": true,
+    "color-hex-case": "lower",
+    "selector-type-case": "lower",
+    "no-duplicate-selectors": true,
+    "declaration-block-no-shorthand-property-overrides": true,
+    "no-indistinguishable-colors": true
+  }
+}
