@@ -5,6 +5,7 @@ module.exports = function() {
     return $.gulp.src($.path.cssFoundation)
       .pipe($.gp.concatCss('foundation.css'))
       .pipe($.gp.csso())
-      .pipe($.gulp.dest($.config.root + '/assets/css'))
-  })
+      .pipe($.gp.if(!$.dev, $.gp.rename({ suffix: '.min' })))
+      .pipe($.gulp.dest($.config.root + '/assets/css'));
+  });
 };

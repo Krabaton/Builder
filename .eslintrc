@@ -15,7 +15,10 @@
   },
 
   "globals": {
-        "$": false
+        "$": false,
+        "require": false,
+        "global": false,
+        "module": false
   },
   
   "extends": "eslint:recommended",

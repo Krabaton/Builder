@@ -1,6 +1,7 @@
 'use strict';
 
 global.$ = {
+  dev: true,
   package: require('./package.json'),
   config: require('./gulp/config'),
   path: {
@@ -17,7 +18,12 @@ global.$ = {
   buffer : require('vinyl-buffer'),
   babel : require('babelify'),
   browserSync: require('browser-sync').create(),
-  gp: require('gulp-load-plugins')()
+  fs : require('fs'),
+  gp: require('gulp-load-plugins')({
+    rename: {
+      'gulp-replace-task': 'replaceTask'
+    }
+  })
 };
 
 $.path.task.forEach(function(taskPath) {

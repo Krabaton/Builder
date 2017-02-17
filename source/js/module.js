@@ -4,6 +4,7 @@ var second = function() {
 var first = function() {
   console.log('works Second module!!!');
 };
+
 module.exports = {
   func1: first,
   func2: second
