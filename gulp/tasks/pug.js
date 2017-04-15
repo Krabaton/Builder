@@ -4,7 +4,7 @@ module.exports = function() {
   const patterns = [];
   $.gulp.task('pug', function() {
     patterns.push({ match: '%=suffix=%', replace: $.dev ? '' : '.min' });
-    patterns.push({ match: '%=version=%', replace: $.dev ? '' : `?rel=${$.package.version}` });
+    patterns.push({ match: '%=version=%', replace: $.dev ? '' : `?rel=${$.package.version}` });//Math.ceil(Math.random()*100000)
 
     return $.gulp.src('./source/template/pages/*.pug')
       .pipe($.gp.pug({ pretty: true }))

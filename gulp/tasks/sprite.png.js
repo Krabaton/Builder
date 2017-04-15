@@ -17,6 +17,6 @@ module.exports = function () {
       .pipe($.gulp.dest('./source/style/common')); // путь куда записываем файл стилей для спрайта
 
     return $.merge(imgStream, cssStream);
-  })
+  });
 
-}
+};
