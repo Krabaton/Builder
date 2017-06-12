@@ -1,7 +1,9 @@
 'use strict';
 
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+
 global.$ = {
-  dev: true,
+  dev: isDevelopment,
   package: require('./package.json'),
   config: require('./gulp/config'),
   path: {
@@ -44,5 +46,18 @@ $.gulp.task('default', $.gulp.series(
   $.gulp.parallel(
     'watch',
     'serve'
+  )
+));
+
+$.gulp.task('build', $.gulp.series(
+  'clean',
+  $.gulp.parallel(
+    'sass',
+    'pug',
+    'js:foundation',
+    'js:process',
+    'copy:image',
+    'copy:font',
+    'css:foundation'
   )
 ));

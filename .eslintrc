@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "node": true
   },
 
   "parserOptions": {
@@ -15,10 +16,7 @@
   },
 
   "globals": {
-        "$": false,
-        "require": false,
-        "global": false,
-        "module": false
+        "$": false
   },
   
   "extends": "eslint:recommended",
