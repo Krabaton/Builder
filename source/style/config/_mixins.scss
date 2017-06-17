@@ -1,0 +1,80 @@
+@mixin circle($width, $color) {
+  width: $width;
+  height: $width;
+  -webkit-border-radius: $width/2;
+  -moz-border-radius: $width/2;
+  -o-border-radius: $width/2;
+  -ms-border-radius: $width/2;
+  border-radius: $width/2;
+  background-color: $color;
+}
+
+@mixin triangle($width, $dir, $color) {
+  width: 0;
+  height: 0;
+  display: block;
+  @if $dir==up {
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+    border-bottom: $width solid $color;
+  }
+  @else if $dir==down {
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+    border-top: $width solid $color;
+  }
+  @else if $dir==left {
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-right: $width solid $color;
+  }
+  @else if $dir==right {
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-left: $width solid $color;
+  }
+}
+
+%clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.hide {
+  display: none!important; // for js
+}
+
+//responsive
+@function rem($px) {
+  @return $px / 16px+0rem;
+}
+
+@mixin desktop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin tablets {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin phones {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}

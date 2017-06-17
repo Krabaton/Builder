@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = [
-  './node_modules/normalize.css/normalize.css'
+  './node_modules/sanitize.css/sanitize.css'
 ];

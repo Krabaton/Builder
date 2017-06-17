@@ -14,7 +14,7 @@ module.exports = function () {
       .pipe($.gulp.dest('./source/images')); // путь куда записываем спрайт
 
     var cssStream = spriteData.css
-      .pipe($.gulp.dest('./source/style/common')); // путь куда записываем файл стилей для спрайта
+      .pipe($.gulp.dest('./source/style/config')); // путь куда записываем файл стилей для спрайта
 
     return $.merge(imgStream, cssStream);
   });
