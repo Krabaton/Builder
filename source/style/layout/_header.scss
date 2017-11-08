@@ -1,0 +1,28 @@
+.header {
+  overflow: hidden;
+  position: relative;
+  padding: 150px 20px 50px;
+  background: #F44336;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+
+  &__text {
+    font: 45px 'Arial', sans-serif;
+    color: #fff;
+  }
+
+  &__logo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: url('/assets/img/logo.jpg') no-repeat center;
+    transform: translate3D(100%, 0, 0);
+    transition: transform 0.5s;
+    background-size: cover;
+  }
+}
+
+.header__logo.m--show {
+  transform: translate3D(0, 0, 0);
+}
