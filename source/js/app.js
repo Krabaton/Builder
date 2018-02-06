@@ -1,8 +1,8 @@
 (function() {
   'use strict';
-  if (document.querySelector('.greating_picture')) {
+  if (document.querySelector('.header__logo')) {
     setTimeout(function() {
-      document.querySelector('.greating_picture').classList.add('m--show');
+      document.querySelector('.header__logo').classList.add('m--show');
     }, 1000);
   }
 })();
