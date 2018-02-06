@@ -18,6 +18,11 @@ var square = b => {
 
 var variable = 8;
 
+/**
+ * 
+ * 
+ * @class MyClass
+ */
 class MyClass {
   constructor(credentials) {
     this.name = credentials.name;
