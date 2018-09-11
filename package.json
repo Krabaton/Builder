@@ -1,6 +1,6 @@
 {
   "name": "builder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "krabaton",
   "license": "ISC",
   "scripts": {
@@ -9,10 +9,10 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babelify": "^8.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.24.7",
-    "browserify": "^16.2.2",
     "del": "^3.0.0",
     "eslint": "^5.5.0",
     "eslint-config-standard": "^12.0.0",
@@ -41,8 +41,8 @@
     "gulp-uglify": "^3.0.0",
     "gulp.spritesmith": "^6.9.0",
     "merge-stream": "^1.0.1",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "gulp-webpack": "^1.5.0",
+    "webpack": "^4.0.1"
   },
   "dependencies": {
     "jquery": "^3.3.1",

@@ -15,12 +15,8 @@ global.$ = {
   gulp: require('gulp'),
   del: require('del'),
   merge: require('merge-stream'),
-  browserify : require('browserify'),
-  source : require('vinyl-source-stream'),
-  buffer : require('vinyl-buffer'),
-  babel : require('babelify'),
   browserSync: require('browser-sync').create(),
-  fs : require('fs'),
+  fs: require('fs'),
   gp: require('gulp-load-plugins')({
     rename: {
       'gulp-replace-task': 'replaceTask'
@@ -28,36 +24,17 @@ global.$ = {
   })
 };
 
-$.path.task.forEach(function(taskPath) {
-  require(taskPath)();
-});
+$
+  .path
+  .task
+  .forEach(function (taskPath) {
+    require(taskPath)();
+  });
 
-$.gulp.task('default', $.gulp.series(
-  'clean',
-  $.gulp.parallel(
-    'sass',
-    'pug',
-    'js:foundation',
-    'js:process',
-    'copy:image',
-    'copy:font',
-    'css:foundation'
-  ),
-  $.gulp.parallel(
-    'watch',
-    'serve'
-  )
-));
+$
+  .gulp
+  .task('default', $.gulp.series('clean', $.gulp.parallel('sass', 'pug', 'js:foundation', 'js:process', 'copy:image', 'copy:font', 'css:foundation'), $.gulp.parallel('watch', 'serve')));
 
-$.gulp.task('build', $.gulp.series(
-  'clean',
-  $.gulp.parallel(
-    'sass',
-    'pug',
-    'js:foundation',
-    'js:process',
-    'copy:image',
-    'copy:font',
-    'css:foundation'
-  )
-));
+$
+  .gulp
+  .task('build', $.gulp.series('clean', $.gulp.parallel('sass', 'pug', 'js:foundation', 'js:process', 'copy:image', 'copy:font', 'css:foundation')));
