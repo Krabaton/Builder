@@ -1,6 +1,12 @@
 'use strict';
 const webpack = require('webpack');
-const webpackConfig = require('../../webpack.config.js');
+let webpackConfig;
+
+if (process.env.NODE_ENV === 'development') {
+  webpackConfig = require('../../webpack.development.config.js');
+} else {
+  webpackConfig = require('../../webpack.production.config.js');
+}
 
 module.exports = function () {
   $
