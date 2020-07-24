@@ -1,8 +1,9 @@
-'use strict';
+const copyRoot = () => {
+  return $.gulp
+    .src(`${$.config.root.source}/root/**/*.*`, {
+      since: $.gulp.lastRun(copyRoot),
+    })
+    .pipe($.gulp.dest($.config.root))
+}
 
-module.exports = function() {
-  $.gulp.task('copy:root', function() {
-    return $.gulp.src('./source/root/**/*.*', { since: $.gulp.lastRun('copy:root') })
-      .pipe($.gulp.dest($.config.root));
-  });
-};
+module.exports = copyRoot

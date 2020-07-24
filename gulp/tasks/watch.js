@@ -1,10 +1,22 @@
-'use strict';
+const nameTask = require('../paths/nameTask')
 
-module.exports = function() {
-  $.gulp.task('watch', function() {
-    $.gulp.watch('./source/js/**/*.js', $.gulp.series('js:process'));
-    $.gulp.watch('./source/style/**/*.scss', $.gulp.series('sass'));
-    $.gulp.watch('./source/template/**/*.pug', $.gulp.series('pug'));
-    $.gulp.watch('./source/images/**/*.*', $.gulp.series('copy:image'));
-  });
-};
+const watch = () => {
+  $.gulp.watch(
+    './source/js/**/*.js',
+    $.gulp.series($.tasks[nameTask.JS_PROCESS]),
+  )
+  $.gulp.watch(
+    `${$.config.source}/style/**/*.scss`,
+    $.gulp.series($.tasks[nameTask.STYLE]),
+  )
+  $.gulp.watch(
+    `${$.config.source}/**/*.pug`,
+    $.gulp.series($.tasks[nameTask.PUG]),
+  )
+  $.gulp.watch(
+    `${$.config.source}/images/**/*.*`,
+    $.gulp.series($.tasks[nameTask.COPY_IMAGE]),
+  )
+}
+
+module.exports = watch

@@ -1,32 +1,25 @@
-'use strict';
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs').promises
+const path = require('path')
 
-module.exports = function () {
-  $
-    .gulp
-    .task('js:foundation', function (cb) {
-      if ($.path.jsFoundation.length === 0) {
-        fs.mkdirSync($.config.root);
-        fs.mkdirSync(path.join($.config.root, 'assets'));
-        fs.mkdirSync(path.join($.config.root, 'assets/js'));
+const jsFoundation = async () => {
+  if ($.path.jsFoundation.length === 0) {
+    // we create empty js file by default
+    await fs.mkdir($.config.root)
+    await fs.mkdir(path.join($.config.root, 'assets'))
+    await fs.mkdir(path.join($.config.root, 'assets/js'))
+    const file = path.join(
+      $.config.root,
+      'assets/js',
+      !$.isDev ? 'foundation.min.js' : 'foundation.js',
+    )
 
-        let file = path.join($.config.root, 'assets/js');
-        file = !$.dev
-          ? path.join(file, 'foundation.min.js')
-          : path.join(file, 'foundation.js');
+    return await fs.writeFile(file, '')
+  }
+  return $.gulp
+    .src($.path.jsFoundation)
+    .pipe($.gp.concat('foundation.js'))
+    .pipe($.gp.if(!$.isDev, $.gp.rename({ suffix: '.min' })))
+    .pipe($.gulp.dest($.config.root + '/assets/js'))
+}
 
-        fs.writeFile(file, 'console.log("Hello Node.js")', err => {
-          if (err)
-            {throw err;}
-          cb();
-        });
-      } else {
-        return $
-          .gulp
-          .src($.path.jsFoundation)
-          .pipe($.gp.concat('foundation.js'))
-          .pipe($.gp.if(!$.dev, $.gp.rename({ suffix: '.min' }))).pipe($.gulp.dest($.config.root + '/assets/js'));
-      }
-    });
-};
+module.exports = jsFoundation

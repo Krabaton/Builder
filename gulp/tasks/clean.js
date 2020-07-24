@@ -1,7 +1,7 @@
-'use strict';
+const del = require('del')
 
-module.exports = function() {
-  $.gulp.task('clean', function(cb) {
-    return $.del($.config.root, cb);
-  });
-};
+const clean = (cb) => {
+  return del($.config.root, cb)
+}
+
+module.exports = clean

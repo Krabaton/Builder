@@ -1,36 +1,24 @@
-// var second = function() {
-//   console.log('works Second module!');
-// };
-// var first = function() {
-//   console.log('works Second module!!!');
-// };
+const sum = (a, b = 6) => a + b
 
-// module.exports = {
-//   func1: first,
-//   func2: second
-// };
+const square = (b) => {
+  return b * b
+}
 
-var sum = (a, b = 6) => a + b;
-
-var square = b => {
-  return b * b;
-};
-
-var variable = 8;
+const variable = 8
 
 /**
- * 
- * 
+ *
+ *
  * @class MyClass
  */
 class MyClass {
   constructor(credentials) {
-    this.name = credentials.name;
-    this.enrollmentNo = credentials.enrollmentNo;
+    this.name = credentials.name
+    this.enrollmentNo = credentials.enrollmentNo
   }
   getName() {
-    return this.name;
+    return this.name
   }
 }
 
-export { sum, square, variable, MyClass };
+export { sum, square, variable, MyClass }

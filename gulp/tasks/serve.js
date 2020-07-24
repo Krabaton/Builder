@@ -1,12 +1,13 @@
-'use strict';
+const server = () => {
+  $.browserSync.init({
+    open: false,
+    server: $.config.root,
+  })
 
-module.exports = function() {
-  $.gulp.task('serve', function() {
-    $.browserSync.init({
-      open: false,
-      server: $.config.root
-    });
+  $.browserSync.watch(
+    [`${$.config.root}/**/*.*`, '!**/*.css', '!**/*.html'],
+    $.browserSync.reload,
+  )
+}
 
-    $.browserSync.watch([$.config.root + '/**/*.*', '!**/*.css', '!**/*.html'], $.browserSync.reload);
-  });
-};
+module.exports = server

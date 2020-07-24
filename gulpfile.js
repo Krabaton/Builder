@@ -1,40 +1,61 @@
-'use strict';
+'use strict'
 
-const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+const { series, parallel, src, dest, lastRun, watch } = require('gulp')
+const nameTask = require('./gulp/paths/nameTask')
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV == 'development'
 
 global.$ = {
-  dev: isDevelopment,
+  isDev,
   package: require('./package.json'),
   config: require('./gulp/config'),
   path: {
     task: require('./gulp/paths/tasks.js'),
     jsFoundation: require('./gulp/paths/js.foundation.js'),
     cssFoundation: require('./gulp/paths/css.foundation.js'),
-    app: require('./gulp/paths/app.js')
+    app: require('./gulp/paths/app.js'),
   },
-  gulp: require('gulp'),
-  del: require('del'),
-  merge: require('merge-stream'),
+  tasks: {},
+  gulp: { src, dest, lastRun, series, watch },
   browserSync: require('browser-sync').create(),
-  fs: require('fs'),
   gp: require('gulp-load-plugins')({
     rename: {
-      'gulp-replace-task': 'replaceTask'
-    }
-  })
-};
+      'gulp-replace-task': 'replaceTask',
+    },
+  }),
+}
 
-$
-  .path
-  .task
-  .forEach(function (taskPath) {
-    require(taskPath)();
-  });
+$.path.task.forEach(function (task) {
+  $.tasks[`${task.name}`] = require(task.path)
+  module.exports[`${task.name}`] = $.tasks[`${task.name}`]
+})
 
-$
-  .gulp
-  .task('default', $.gulp.series('clean', $.gulp.parallel('sass', 'pug', 'js:foundation', 'js:process', 'copy:image', 'copy:font', 'css:foundation'), $.gulp.parallel('watch', 'serve')));
+module.exports.default = series(
+  $.tasks[nameTask.CLEAN],
+  parallel(
+    $.tasks[nameTask.STYLE],
+    $.tasks[nameTask.PUG],
+    $.tasks[nameTask.JS_FOUNDATION],
+    $.tasks[nameTask.JS_PROCESS],
+    $.tasks[nameTask.COPY_IMAGE],
+    $.tasks[nameTask.COPY_FONT],
+    $.tasks[nameTask.CSS_FOUNDATION],
+    $.tasks[nameTask.COPY_ROOT],
+  ),
+  parallel($.tasks[nameTask.WATCH], $.tasks[nameTask.SERVER]),
+)
 
-$
-  .gulp
-  .task('build', $.gulp.series('clean', $.gulp.parallel('sass', 'pug', 'js:foundation', 'js:process', 'copy:image', 'copy:font', 'css:foundation')));
+module.exports.build = series(
+  $.tasks[nameTask.CLEAN],
+  parallel(
+    $.tasks[nameTask.STYLE],
+    $.tasks[nameTask.PUG],
+    $.tasks[nameTask.JS_FOUNDATION],
+    $.tasks[nameTask.JS_PROCESS],
+    $.tasks[nameTask.COPY_IMAGE],
+    $.tasks[nameTask.COPY_FONT],
+    $.tasks[nameTask.CSS_FOUNDATION],
+    $.tasks[nameTask.COPY_ROOT],
+  ),
+)
+
+require('./gulp/fix')
