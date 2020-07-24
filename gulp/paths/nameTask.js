@@ -8,6 +8,8 @@ const nameTask = {
   COPY_FONT: 'copyFont',
   COPY_ROOT: 'copyRoot',
   CSS_FOUNDATION: 'cssFoundation',
+  SVG_SPRITE: 'spriteSvg',
+  PNG_SPRITE: 'spritePng',
   WATCH: 'watch',
   SERVER: 'server',
 }

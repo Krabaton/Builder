@@ -40,6 +40,7 @@ module.exports.default = series(
     $.tasks[nameTask.COPY_FONT],
     $.tasks[nameTask.CSS_FOUNDATION],
     $.tasks[nameTask.COPY_ROOT],
+    $.tasks[nameTask.SVG_SPRITE],
   ),
   parallel($.tasks[nameTask.WATCH], $.tasks[nameTask.SERVER]),
 )
@@ -55,6 +56,7 @@ module.exports.build = series(
     $.tasks[nameTask.COPY_FONT],
     $.tasks[nameTask.CSS_FOUNDATION],
     $.tasks[nameTask.COPY_ROOT],
+    $.tasks[nameTask.SVG_SPRITE],
   ),
 )
 

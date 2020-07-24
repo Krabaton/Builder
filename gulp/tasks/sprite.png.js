@@ -1,22 +1,20 @@
-// задача - cоздание прайтов из png исходников
+const merge = require('merge-stream')
 
-'use strict';
-
-module.exports = function () {
-  $.gulp.task('sprite:png', function () {
-    var spriteData = $.gulp.src('./source/icons/*.png').pipe($.gp.spritesmith({
+const spritePng = () => {
+  const spriteData = $.gulp.src('./source/icons/*.png').pipe(
+    $.gp.spritesmith({
       imgName: 'sprite.png', // итоговый спрайт
       cssName: 'sprite.scss', // файл стилей
       algorithm: 'left-right',
-      padding: 20
-    }));
-    var imgStream = spriteData.img
-      .pipe($.gulp.dest('./source/images')); // путь куда записываем спрайт
+      padding: 20,
+    }),
+  )
 
-    var cssStream = spriteData.css
-      .pipe($.gulp.dest('./source/style/config')); // путь куда записываем файл стилей для спрайта
+  const imgStream = spriteData.img.pipe($.gulp.dest('./source/images')) // путь куда записываем спрайт
 
-    return $.merge(imgStream, cssStream);
-  });
+  const cssStream = spriteData.css.pipe($.gulp.dest('./source/style/config')) // путь куда записываем файл стилей для спрайта
 
-};
+  return merge(imgStream, cssStream)
+}
+
+module.exports = spritePng

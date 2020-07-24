@@ -12,6 +12,6 @@ module.exports = [
   { name: nameTask.JS_PROCESS, path: './gulp/tasks/js.process.js' },
   { name: nameTask.COPY_IMAGE, path: './gulp/tasks/copy.image.js' },
   { name: nameTask.COPY_FONT, path: './gulp/tasks/copy.fonts.js' },
-  // './gulp/tasks/sprite.png.js',
-  // './gulp/tasks/sprite.svg.js'
+  { name: nameTask.SVG_SPRITE, path: './gulp/tasks/sprite.svg.js' },
+  { name: nameTask.PNG_SPRITE, path: './gulp/tasks/sprite.png.js' },
 ]

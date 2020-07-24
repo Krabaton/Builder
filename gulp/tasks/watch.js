@@ -17,6 +17,10 @@ const watch = () => {
     `${$.config.source}/images/**/*.*`,
     $.gulp.series($.tasks[nameTask.COPY_IMAGE]),
   )
+  $.gulp.watch(
+    `${$.config.source}/sprite/*.svg`,
+    $.gulp.series($.tasks[nameTask.SVG_SPRITE]),
+  )
 }
 
 module.exports = watch
