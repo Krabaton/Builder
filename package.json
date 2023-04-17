@@ -9,7 +9,7 @@
     "sprite:png": "gulp spritePng"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.29.1",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
